@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://queb.fun</id>
     <title>千木岛</title>
-    <updated>2022-02-15T21:12:50.802Z</updated>
+    <updated>2022-02-18T06:54:50.698Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://queb.fun"/>
     <link rel="self" href="https://queb.fun/atom.xml"/>
@@ -48,10 +48,15 @@
 <h3 id="青豆炒肉">青豆炒肉</h3>
 <p>还可以，炒肉=炒肉末，但好歹也是肉。青豆挺软的味道ok</p>
 <p>这家的调味都挺相似的，油分比较大，不过不是油腻的那种。3.5/5</p>
+<h3 id="卤肉">卤肉</h3>
+<p>其实是卤肉馅，配图如下<br>
+<img src="https://imgs.aixifan.com/FqRusdCLr6hVXtGy1UT0PEPoYXrt" alt="好多油.jpg" loading="lazy"></p>
+<h3 id="梅菜扣肉">梅菜扣肉</h3>
+<p>好吃，量大肉多。差点没吃完。秒了！</p>
 <h2 id="新美香">新美香</h2>
 <p>在买上面那个王小余之前我买了挺久这家的。对比之后发现这家的口感很奇怪，像是加了不少增稠剂。但是用料上还是可以的，可能是我没有get到他的好。吃的挺多但是我记不大住了，就随便写几个</p>
 <h3 id="台式卤肉-香菇卤肉">台式卤肉 &amp; 香菇卤肉</h3>
-<p>**咸！**这个卤肉某种意义上可以算作是浇头。当菜绝对是大材小用了。肉都是小丁丁而且偏肥。如果住了面之类的可以配一下，还不错</p>
+<p><strong>咸！</strong> 这个卤肉某种意义上可以算作是浇头。当菜绝对是大材小用了。肉都是小丁丁而且偏肥。如果住了面之类的可以配一下，还不错</p>
 <h3 id="咖喱鸡肉">咖喱鸡肉</h3>
 <p>除了那个奇怪的勾芡问题以外还可以，鸡肉的口感很松弛但是量还是够的。</p>
 <h3 id="鱼香肉丝">鱼香肉丝</h3>
@@ -132,8 +137,8 @@ Replace: &lt;5844534d&gt;
 </ul>
 <p>TODO：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-75950"><label class="task-list-item-label" for="task-item-75950"> 将之前的脏代码整理到合适的地方</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7154310"><label class="task-list-item-label" for="task-item-7154310"> 适配Chrome的毛玻璃效果（JS版）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8341747"><label class="task-list-item-label" for="task-item-8341747"> 将之前的脏代码整理到合适的地方</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8914370"><label class="task-list-item-label" for="task-item-8914370"> 适配Chrome的毛玻璃效果（JS版）</label></li>
 </ul>
 ]]></content>
     </entry>
