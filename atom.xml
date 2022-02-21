@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://queb.fun</id>
     <title>千木岛</title>
-    <updated>2022-02-18T06:54:50.698Z</updated>
+    <updated>2022-02-21T09:00:21.500Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://queb.fun"/>
     <link rel="self" href="https://queb.fun/atom.xml"/>
@@ -10,6 +10,46 @@
     <logo>https://queb.fun/images/avatar.png</logo>
     <icon>https://queb.fun/favicon.ico</icon>
     <rights>All rights reserved 2022, 千木岛</rights>
+    <entry>
+        <title type="html"><![CDATA[我中意的React解决方案]]></title>
+        <id>https://queb.fun/post/TnY6CCAgp/</id>
+        <link href="https://queb.fun/post/TnY6CCAgp/">
+        </link>
+        <updated>2022-02-21T08:33:51.000Z</updated>
+        <summary type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://s6.jpg.cm/2022/02/21/LflaxW.md.jpg" alt="LflaxW.md.jpg" loading="lazy"></figure>
+<p>一些在我调查和实际生产中比较喜欢的解决方案</p>
+]]></summary>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://s6.jpg.cm/2022/02/21/LflaxW.md.jpg" alt="LflaxW.md.jpg" loading="lazy"></figure>
+<p>一些在我调查和实际生产中比较喜欢的解决方案</p>
+<!-- more -->
+<h2 id="状态管理">状态管理</h2>
+<h3 id="mobx"><a href="https://mobx.js.org/">Mobx</a></h3>
+<p>目前用的最多的解决方案，对FC的支持也不错。问题在于必须使用observer包裹组件，而且兼容性不强</p>
+<h3 id="immer"><a href="https://immerjs.github.io/immer/">Immer</a></h3>
+<p>Mobx作者新搞的小玩具，实用性一般，因为要修改必须从顶级state的draft开始访问，否则不能正确响应。但是思路还是很好的，工程量不大的小项目小组件可以试试看</p>
+<h3 id="valtio"><a href="https://github.com/pmndrs/valtio">Valtio</a></h3>
+<p>最近发现的新玩具，似乎是最符合我信息的解决方案了，还没有试过但是很感兴趣，用过之后遇到问题会再写后续文章</p>
+<h2 id="路由">路由</h2>
+<h3 id="react-router">react-router</h3>
+<p>不用多说，官方推荐。不是非常易用但是足够好用，也懒得折腾更多了，之前有段时间（大概是5.0左右？）对hooks的支持很差所以尝试了其他的解决方案，现在支持还不错就换回来了。</p>
+<h3 id="react-hook-router"><a href="https://github.com/Paratron/hookrouter">React Hook Router</a></h3>
+<p>这就是当初用过的方案，现在不再推荐了因为 react-router 已经很好了，而且这个作者不喜欢TS所以这方面的支持也不太好，而且很久没更新了。但作为一个小型router的实现代码是值得学习的。</p>
+<h2 id="css">CSS</h2>
+<h3 id="emotionjs">emotionJS</h3>
+<p>目前在用的，除了 <code>css props</code> 我颇有微词以外，其他的部分都算完美，<code>css-in-js</code>保证了样式的可控性（我知道大部分时候用不到，但是用得到的时候还是很爽的），使用完整的CSS/SCSS语法而不是什么<code>Tailwind</code>黑科技。库很小而且泛用性很高。本质上这东西和<code>styled</code>是一家子所以代码也很容易迁移。平台支持广：虽然理论上这东西支持RN但属实没必要。</p>
+<h3 id="styled-jsx">styled-jsx</h3>
+<p>呃，这东西就比较微妙了。首先他是需要babel支持的，这意味着在某些你不想用，或者不能用babel的场合这东西就跪了。与emotion相比实际上我更喜欢styled的写法，即把style单独写在一个标签里面然后用<code>scoped css</code>限制他的作用域，但是styled-jsx是不建议注入子组件的样式的，我不赞同这个设计。所以权衡之后放弃了这东西。btw <code>next.js</code> 默认用的这个。说明还是有相当一部分人喜欢 <code>shadow-css</code> 设计的。看个人喜好和具体业务场景了。</p>
+<h3 id="material-uistyle">@material-ui/style</h3>
+<p>这东西入土了，新的mui用的是emotion，然后保留了之前的api而已。</p>
+<h3 id="react-spring">react-spring</h3>
+<p>这东西我本来想单独分个动效来说的，但是讲道理好像和CSS重叠的部分还是很广的，也就一并讲了。</p>
+<p>很好用，虽然新的api有点反直觉但是能get到他们的设计思路所以我保留意见。实际上这个弹性库并不一定是用来给css的，你可以给任何你想加上可控曲线效果的地方用上。同样支持RN，但没研究过。</p>
+<h2 id="canvas">Canvas</h2>
+<h3 id="konva">Konva</h3>
+<p>比较复杂，这东西其实是新建了一个react实例然后挂载在你的组件树上，所以会有一些奇妙的小问题。但总的来说还是足够好用。暂时找不到比它更方便的canvas库了，或者说更进一步的需求建议用flutter。</p>
+<p>先写这么多，想起来什么再补充。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[为什么用了Gridea更新的更少了]]></title>
         <id>https://queb.fun/post/wei-shi-me-yong-liao-gridea-geng-xin-de-geng-shao-liao/</id>
@@ -137,8 +177,8 @@ Replace: &lt;5844534d&gt;
 </ul>
 <p>TODO：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8341747"><label class="task-list-item-label" for="task-item-8341747"> 将之前的脏代码整理到合适的地方</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8914370"><label class="task-list-item-label" for="task-item-8914370"> 适配Chrome的毛玻璃效果（JS版）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8969126"><label class="task-list-item-label" for="task-item-8969126"> 将之前的脏代码整理到合适的地方</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8168620"><label class="task-list-item-label" for="task-item-8168620"> 适配Chrome的毛玻璃效果（JS版）</label></li>
 </ul>
 ]]></content>
     </entry>
@@ -259,24 +299,6 @@ include /etc/nginx/sites-enabled/*;
 <p>2018-04-16：稍作修改；</p>
 <p>2018-04-13：初版；</p>
 <p>#EOF</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[黑苹果升级10.13.4——显卡篇]]></title>
-        <id>https://queb.fun/post/黑苹果升级10-13-4——显卡篇/</id>
-        <link href="https://queb.fun/post/黑苹果升级10-13-4——显卡篇/">
-        </link>
-        <updated>2018-03-31T03:53:12.000Z</updated>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/04/13/5ad080a90ad84.jpg" alt="" loading="lazy"></figure>
-<p>###2018.8.23更新：<br>
-显卡驱动换为WhateverGreen，在错觉程度的水平上提升了性能表现……</p>
-<hr>
-<p>今日apple推送了macOS 10.13.4 新增了对eGPU的支持，实测在配合 NvidiaGraphicsFixup 时，可以显著提升MacOS的图形性能。</p>
-<p>需要将 NvidiaGraphicsFixup 升级至1.2.5版本，WebDriver升级到387.10.10.10.30.103（即13.4最新版驱动）</p>
-<p>升级过程应该不用我多讲了。。。大家一试便知</p>
-<p>·附上 NvidiaGraphicsFixup 项目地址   https://github.com/lvs1974/NvidiaGraphicsFixup</p>
-<hr>
-<p>题图: http://adnmb1.com/t/6621569</p>
 ]]></content>
     </entry>
 </feed>
