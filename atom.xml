@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://queb.fun</id>
     <title>千木岛</title>
-    <updated>2022-02-21T09:00:21.500Z</updated>
+    <updated>2022-02-21T09:01:57.071Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://queb.fun"/>
     <link rel="self" href="https://queb.fun/atom.xml"/>
@@ -48,6 +48,8 @@
 <h3 id="konva">Konva</h3>
 <p>比较复杂，这东西其实是新建了一个react实例然后挂载在你的组件树上，所以会有一些奇妙的小问题。但总的来说还是足够好用。暂时找不到比它更方便的canvas库了，或者说更进一步的需求建议用flutter。</p>
 <p>先写这么多，想起来什么再补充。</p>
+<hr>
+<p>题图 <a href="https://twitter.com/kirizieeel/status/1495523468657397762">https://twitter.com/kirizieeel/status/1495523468657397762</a></p>
 ]]></content>
     </entry>
     <entry>
@@ -177,8 +179,8 @@ Replace: &lt;5844534d&gt;
 </ul>
 <p>TODO：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8969126"><label class="task-list-item-label" for="task-item-8969126"> 将之前的脏代码整理到合适的地方</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8168620"><label class="task-list-item-label" for="task-item-8168620"> 适配Chrome的毛玻璃效果（JS版）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8857155"><label class="task-list-item-label" for="task-item-8857155"> 将之前的脏代码整理到合适的地方</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1969752"><label class="task-list-item-label" for="task-item-1969752"> 适配Chrome的毛玻璃效果（JS版）</label></li>
 </ul>
 ]]></content>
     </entry>
