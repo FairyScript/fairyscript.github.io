@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>在hexo页面插入网易云播放器 | 千木岛</title>
+<title>Valtio 笔记其一：正交的状态管理 | 千木岛</title>
 
 <link rel="shortcut icon" href="https://queb.fun/favicon.ico?v=1645730016689">
 
@@ -101,51 +101,71 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    在hexo页面插入网易云播放器
+                    Valtio 笔记其一：正交的状态管理
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2018-08-23 ·
+                        · 2022-02-25 ·
                     </time>
-                    
-                        <a href="https://queb.fun/tag/q_SSZbzrE/" class="post-tags">
-                            # 技术笔记
-                        </a>
-                    
-                        <a href="https://queb.fun/tag/ElEErmzoXt/" class="post-tags">
-                            # 网易云音乐
-                        </a>
-                    
-                        <a href="https://queb.fun/tag/dVrhbBVw8r/" class="post-tags">
-                            # Hexo
-                        </a>
                     
                 </div>
                 <div class="post-content">
-                    <figure data-type="image" tabindex="1"><img src="https://s6.jpg.cm/2022/02/16/LBqbmt.png" alt="LBqbmt.png" loading="lazy"></figure>
+                    <p><img src="https://s6.jpg.cm/2022/02/25/LgeuwS.jpg" alt="https://twitter.com/cbaohltred/status/1469072112270802944" loading="lazy"><br>
+研究了两天，尝试用 Valtio 重构之前的一个项目，有了一些收获</p>
 <!-- more -->
-<p>最近终于在百(shou)忙(lie)之余想起来还有个博客的事，最近几个月除了把博客搬迁到了gitpage就完全没有理睬这玩意，既然今天想起来了就干脆把之前魔改留下的坑稍微填一下……</p>
-<p>为什么会有这篇文章呢，为了让博客看着稍微正常点，我找了关于如何在Md页面中插入HTML的教程，最后发现是原生支持的……那么问题就变成了要在页面上插入些什么东西才好，思前想后果然还是王道征途，音乐控件吧</p>
-<p>那么就是惯例的Google，找到了如下的代码：</p>
-<pre><code class="language-html">&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;320&quot; height=&quot;330&quot; src=&quot;https://music.163.com/outchain/player?type=0&amp;amp;id=24972133&amp;amp;auto=0&amp;amp;height=430&quot;&gt;&lt;/iframe&gt;
+<pre><code class="language-ts">//a.ts
+const stateA = proxy({
+  id: 0,
+  get activeID() {
+    return state.id
+  },
+  active: (id: number) =&gt; {
+    state.id = id
+  },
+})
+
+//b.ts
+const stateB = proxy({
+  fState: ref(stateA),
+  testChange: ()=&gt;{
+    console.log('其他的state可以互相引用修改');
+    
+    state.fState.active(4)
+  }
+})
 </code></pre>
-<p>将这行代码直接放在需要的地方就可以实现如下效果的播放器：</p>
-<!-- more -->
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="320" height="330" src="https://music.163.com/outchain/player?type=0&amp;id=24972133&amp;auto=0&amp;height=430"></iframe>
-<p>&lt;iframe&gt;控件的参数可以从<a href="http://www.w3school.com.cn/tags/tag_iframe.asp">这里</a>看到，可以借助参数来调整控件的外观。不过最重要的还是src部分的参数，将sec部分的‘type’和‘id’部分替换成自己的就可以了<br>
-其中：</p>
-<ul>
-<li>type为0的时候对应的是歌单的id；</li>
-<li>type为1的时候对应的是专辑的id；</li>
-<li>type为2的时候对应的是单曲的id</li>
-</ul>
-<p>网易云自带的外链设置：<code>https://music.163.com/#/outchain/_type/_id/m/use/html</code>,将_type和_id改为需要的参数即可。</p>
-<p><strong>2018.9.4更新</strong></p>
-<p>最近将博客迁移到gitpages后发现此前的播放器不能正常显示，Google后发现是gitpage强制开启了https，而我之前的播放器src用了http……修改后解决</p>
-<p><a href="http://saili.science/2017/05/30/music/">参考链接</a></p>
-<hr>
-<p>题图：Pixiv_PID:70217074</p>
-<p>#EOF</p>
+<p>Valtio 好就好在可以用一个非常简单的模式完成 state 和 UI 的解耦，因为 state<br>
+本身是可变的，所以可以尽情的利用原生js的特性操作。不会有react额外的噪音。对于react的使用，我选择把所有可能的操作都封装为 hooks ，这样就尽可能的保证了 UI 的逻辑无关</p>
+<pre><code class="language-ts">//a.ts
+const stateA = proxy({
+  id: 0,
+  get activeID() {
+    return state.id
+  },
+  active: (id: number) =&gt; {
+    state.id = id
+  },
+})
+
+export function useStateA() {
+  const _state = useSnapshot(stateA)
+  return _state
+}
+
+//需要的生命周期 Hooks 和state封装在一起
+export function useIDUpdate() {
+  const _state = useSnapshot(stateA)
+
+  useEffect(() =&gt; {
+    foo().then((res) =&gt; {
+      state.active(res)
+    })
+  }, [])
+
+  return state.activeID
+}
+</code></pre>
+<p>非常干净，非常清爽，非常强大。</p>
 
                 </div>
             </article>
@@ -154,8 +174,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://queb.fun/post/Play Store更新APP卡在“正在下载”的解决方法/" class="post-title gt-a-link">
-                    Play Store更新APP卡在“正在下载”的解决方法
+                <a href="https://queb.fun/post/TnY6CCAgp/" class="post-title gt-a-link">
+                    我中意的React解决方案
                 </a>
             </div>
         

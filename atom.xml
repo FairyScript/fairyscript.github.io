@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://queb.fun</id>
     <title>千木岛</title>
-    <updated>2022-02-22T15:54:02.436Z</updated>
+    <updated>2022-02-24T19:13:40.339Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://queb.fun"/>
     <link rel="self" href="https://queb.fun/atom.xml"/>
@@ -10,6 +10,73 @@
     <logo>https://queb.fun/images/avatar.png</logo>
     <icon>https://queb.fun/favicon.ico</icon>
     <rights>All rights reserved 2022, 千木岛</rights>
+    <entry>
+        <title type="html"><![CDATA[Valtio 笔记其一：正交的状态管理]]></title>
+        <id>https://queb.fun/post/a2XFsdfwX/</id>
+        <link href="https://queb.fun/post/a2XFsdfwX/">
+        </link>
+        <updated>2022-02-24T19:01:35.000Z</updated>
+        <summary type="html"><![CDATA[<p><img src="https://s6.jpg.cm/2022/02/25/LgeuwS.jpg" alt="https://twitter.com/cbaohltred/status/1469072112270802944" loading="lazy"><br>
+研究了两天，尝试用 Valtio 重构之前的一个项目，有了一些收获</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><img src="https://s6.jpg.cm/2022/02/25/LgeuwS.jpg" alt="https://twitter.com/cbaohltred/status/1469072112270802944" loading="lazy"><br>
+研究了两天，尝试用 Valtio 重构之前的一个项目，有了一些收获</p>
+<!-- more -->
+<pre><code class="language-ts">//a.ts
+const stateA = proxy({
+  id: 0,
+  get activeID() {
+    return state.id
+  },
+  active: (id: number) =&gt; {
+    state.id = id
+  },
+})
+
+//b.ts
+const stateB = proxy({
+  fState: ref(stateA),
+  testChange: ()=&gt;{
+    console.log('其他的state可以互相引用修改');
+    
+    state.fState.active(4)
+  }
+})
+</code></pre>
+<p>Valtio 好就好在可以用一个非常简单的模式完成 state 和 UI 的解耦，因为 state<br>
+本身是可变的，所以可以尽情的利用原生js的特性操作。不会有react额外的噪音。对于react的使用，我选择把所有可能的操作都封装为 hooks ，这样就尽可能的保证了 UI 的逻辑无关</p>
+<pre><code class="language-ts">//a.ts
+const stateA = proxy({
+  id: 0,
+  get activeID() {
+    return state.id
+  },
+  active: (id: number) =&gt; {
+    state.id = id
+  },
+})
+
+export function useStateA() {
+  const _state = useSnapshot(stateA)
+  return _state
+}
+
+//需要的生命周期 Hooks 和state封装在一起
+export function useIDUpdate() {
+  const _state = useSnapshot(stateA)
+
+  useEffect(() =&gt; {
+    foo().then((res) =&gt; {
+      state.active(res)
+    })
+  }, [])
+
+  return state.activeID
+}
+</code></pre>
+<p>非常干净，非常清爽，非常强大。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[我中意的React解决方案]]></title>
         <id>https://queb.fun/post/TnY6CCAgp/</id>
@@ -187,8 +254,8 @@ Replace: &lt;5844534d&gt;
 </ul>
 <p>TODO：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5449251"><label class="task-list-item-label" for="task-item-5449251"> 将之前的脏代码整理到合适的地方</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6108856"><label class="task-list-item-label" for="task-item-6108856"> 适配Chrome的毛玻璃效果（JS版）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2244956"><label class="task-list-item-label" for="task-item-2244956"> 将之前的脏代码整理到合适的地方</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6763536"><label class="task-list-item-label" for="task-item-6763536"> 适配Chrome的毛玻璃效果（JS版）</label></li>
 </ul>
 ]]></content>
     </entry>
@@ -234,81 +301,6 @@ Replace: &lt;5844534d&gt;
         <updated>2018-08-22T21:01:22.000Z</updated>
         <content type="html"><![CDATA[<p>最近几个月遇到了Play Store更新/下载应用时长时间卡在“正在下载…”的情况，然后过了几分钟之后突然开始下载的情况。一开始以为是网络的问题，但是反复检查没有头绪，于是搜索了一下，发现这个现象从去年开始就有相关的资料了（有理由怀疑是Google在搞什么动作）</p>
 <p>解决方法也很简单，强行退出Play Store之后，清空Play Store的数据，重新打开就恢复了。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Nginx从入门到入土#1——配置文件初探]]></title>
-        <id>https://queb.fun/post/Nginx从入门到入土#1——配置文件初探/</id>
-        <link href="https://queb.fun/post/Nginx从入门到入土#1——配置文件初探/">
-        </link>
-        <updated>2018-04-13T11:06:22.000Z</updated>
-        <summary type="html"><![CDATA[<p>本文意在简要说明Nginx配置文件以尽快上手，诸多进阶配置项不在本文的介绍范围内，请自行Google 😃</p>
-<h3 id="nginx-文件树">Nginx 文件树</h3>
-<p>Nginx的配置文件主要分为两类——Nginx自身的配置（即/etc/nginx/nginx.conf）和vHost配置文件（/etc/nginx/sites-available内文件）</p>
-<p><img src="https://i.loli.net/2018/04/13/5ad0932aba39d.png" alt="" loading="lazy"><br>
-（图为/etc/nginx文件夹一览）</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>本文意在简要说明Nginx配置文件以尽快上手，诸多进阶配置项不在本文的介绍范围内，请自行Google 😃</p>
-<h3 id="nginx-文件树">Nginx 文件树</h3>
-<p>Nginx的配置文件主要分为两类——Nginx自身的配置（即/etc/nginx/nginx.conf）和vHost配置文件（/etc/nginx/sites-available内文件）</p>
-<p><img src="https://i.loli.net/2018/04/13/5ad0932aba39d.png" alt="" loading="lazy"><br>
-（图为/etc/nginx文件夹一览）</p>
-<!-- more -->
-<p>关于Nginx.conf文件，一般情况下不需要调整就可以正常工作，所以本文暂不展开讲解。但是值得注意的是，决定使用哪个vHost配置文件的相关内容位于Nginx.conf文件内：</p>
-<pre><code>./nginx.conf
-##
-# Virtual Host Configs
-##
-
-include /etc/nginx/conf.d/*.conf;
-include /etc/nginx/sites-enabled/*;
-</code></pre>
-<p>可以通过更改include字段来选择启用的vHost配置文件</p>
-<h3 id="vhost配置">vHost配置</h3>
-<p>由上例可知，实际中Nginx使用的是./sites-enabled/下的配置文件，然而一般情况下，我们选择将配置文件放到./sites-available/文件夹下，然后将要应用的配置文件软链接到sites-enabled文件夹下来使用。</p>
-<p>如果你是通过apt或yum安装的Nginx，./sites-available/文件夹下应该会有一个default配置（也有可能同时存在它的备份），这就是nginx的默认配置文件。如果只是简单的端口转发/同时运行多个站点，只要在default的基础上进行修改即可。</p>
-<p>以下是一个default文件的例子：</p>
-<pre><code>server {
-	listen 80;
-	server_name localhost;
-	root /var/www;
-	index index.html index.htm;
-	access_log  /var/log/nginx/access.log;
-    error_log  /var/log/nginx/error.log;
-	location / {
-		return 301 https://$host$request_uri;
-	}
-}
-</code></pre>
-<p>其中：</p>
-<ul>
-<li>server{}代表了一个服务端，理论上每个不同的服务对应着一个server；</li>
-<li>listen指你要监听的端口；</li>
-<li>server_name 指响应的域名
-<ul>
-<li>详见 https://www.jianshu.com/p/2d6f16a32b37</li>
-</ul>
-</li>
-<li>root 指网站的根目录</li>
-<li>index指你网站的起始页面</li>
-<li>location{}是该服务所响应的路径（即你的域名/IP后面的部分）</li>
-</ul>
-<p>下面我们详细说明一下location</p>
-<pre><code>location /blog {
-    stub_status on;
-    access_log off;
-    root /var/www;
-    index index.html;
-    }
-</code></pre>
-<p>location后面跟的“/”就是其响应的路径，其中“/”指的是响应所有路径。即形如“yourdomain.name/*** ”的URL都会被响应。如果location后面跟的是“/blog”，那么形如 “ yourdomain.name/blog ”的URL就会被响应。</p>
-<p>是的，同一个server可以有多个location。<br>
-同时在location内，server中的一些数据可以被覆盖，比如 root。</p>
-<hr>
-<p>修改日志：</p>
-<p>2018-04-16：稍作修改；</p>
-<p>2018-04-13：初版；</p>
-<p>#EOF</p>
 ]]></content>
     </entry>
 </feed>
