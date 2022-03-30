@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://queb.fun</id>
     <title>千木岛</title>
-    <updated>2022-02-24T19:13:40.339Z</updated>
+    <updated>2022-03-30T15:22:22.767Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://queb.fun"/>
     <link rel="self" href="https://queb.fun/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://queb.fun/images/avatar.png</logo>
     <icon>https://queb.fun/favicon.ico</icon>
     <rights>All rights reserved 2022, 千木岛</rights>
+    <entry>
+        <title type="html"><![CDATA[记重新安装windows下GPG踩到的坑]]></title>
+        <id>https://queb.fun/post/6BdNLNPya/</id>
+        <link href="https://queb.fun/post/6BdNLNPya/">
+        </link>
+        <updated>2022-03-30T15:19:45.000Z</updated>
+        <content type="html"><![CDATA[<p>前段时间在新环境上配置gpg时,下意识安装了win4gpg.然后在从Canokey导入私钥的时候遇到了gpg行为十分怪异的情况.</p>
+<p>检查之后发现是因为 windows git ,如果选择使用git捆绑的openSSH的话,他会自己带一个gpg.导致和win4gpg互相干扰</p>
+<p>卸载掉win4gpg 之后,重新 fetch卡片就解决了</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Valtio 笔记其一：正交的状态管理]]></title>
         <id>https://queb.fun/post/a2XFsdfwX/</id>
@@ -254,8 +265,8 @@ Replace: &lt;5844534d&gt;
 </ul>
 <p>TODO：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2244956"><label class="task-list-item-label" for="task-item-2244956"> 将之前的脏代码整理到合适的地方</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6763536"><label class="task-list-item-label" for="task-item-6763536"> 适配Chrome的毛玻璃效果（JS版）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2847241"><label class="task-list-item-label" for="task-item-2847241"> 将之前的脏代码整理到合适的地方</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7929735"><label class="task-list-item-label" for="task-item-7929735"> 适配Chrome的毛玻璃效果（JS版）</label></li>
 </ul>
 ]]></content>
     </entry>
@@ -291,16 +302,6 @@ Replace: &lt;5844534d&gt;
 <hr>
 <p>题图：Pixiv_PID:70217074</p>
 <p>#EOF</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Play Store更新APP卡在“正在下载”的解决方法]]></title>
-        <id>https://queb.fun/post/Play Store更新APP卡在“正在下载”的解决方法/</id>
-        <link href="https://queb.fun/post/Play Store更新APP卡在“正在下载”的解决方法/">
-        </link>
-        <updated>2018-08-22T21:01:22.000Z</updated>
-        <content type="html"><![CDATA[<p>最近几个月遇到了Play Store更新/下载应用时长时间卡在“正在下载…”的情况，然后过了几分钟之后突然开始下载的情况。一开始以为是网络的问题，但是反复检查没有头绪，于是搜索了一下，发现这个现象从去年开始就有相关的资料了（有理由怀疑是Google在搞什么动作）</p>
-<p>解决方法也很简单，强行退出Play Store之后，清空Play Store的数据，重新打开就恢复了。</p>
 ]]></content>
     </entry>
 </feed>
